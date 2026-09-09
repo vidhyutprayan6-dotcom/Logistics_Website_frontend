@@ -13,26 +13,29 @@ export default function ContactPage() {
 
   return (
     <SiteShell>
-      <section className="section-pad pt-8 md:pt-12">
-        <div className="container-main grid gap-8 lg:grid-cols-2">
+      <section className="section-pad pt-10 md:pt-16">
+        <div className="container-main grid gap-10 lg:grid-cols-[1fr_1.05fr]">
           <div>
-            <p className="kicker">Contact</p>
-            <h1 className="heading mt-3 text-[clamp(2.2rem,5vw,3.4rem)]">Contact Vettore Logistics</h1>
-            <p className="mt-4 text-[var(--muted)]">
-              Reach out about MVP setup: user roles, shipment workflows, pricing rules, payments or dashboard access.
+            <p className="eyebrow">Contact</p>
+            <h1 className="display mt-4 text-[clamp(2.5rem,7vw,4.6rem)]">
+              Talk about
+              <br />
+              your logistics rollout
+            </h1>
+            <p className="mt-5 max-w-md text-lg text-[var(--muted)]">
+              Ask about shipment workflows, role setup, pricing rules, Stripe/COD payments or admin dashboard needs.
             </p>
-            <div className="mt-6 space-y-1 text-sm">
+            <div className="mt-8 space-y-2 text-sm">
               <p>support@vettore.app</p>
               <p>+39 000 000 0000</p>
             </div>
           </div>
-
-          <form onSubmit={onSubmit} className="panel p-6 md:p-7">
-            <div className="grid gap-3 md:grid-cols-2">
+          <form onSubmit={onSubmit} className="soft-card p-6 md:p-8">
+            <div className="grid gap-4 md:grid-cols-2">
               <input className="field" name="name" placeholder="Name *" required />
               <input className="field" type="email" name="email" placeholder="Email *" required />
             </div>
-            <select className="field mt-3" name="topic" defaultValue="Shipments">
+            <select className="field mt-4" name="topic" defaultValue="Shipments">
               <option>Shipments</option>
               <option>Tracking</option>
               <option>Pricing</option>
@@ -40,11 +43,11 @@ export default function ContactPage() {
               <option>Admin dashboard</option>
               <option>User roles</option>
             </select>
-            <textarea className="field textarea mt-3" name="message" placeholder="Message *" required />
-            <button type="submit" className="btn btn-primary mt-4">
+            <textarea className="field textarea mt-4" name="message" placeholder="Message *" required />
+            <button type="submit" className="btn btn-dark mt-5 w-full md:w-auto">
               Send message
             </button>
-            {sent && <p className="mt-3 text-sm text-emerald-700">Message sent. We will follow up soon.</p>}
+            {sent && <p className="mt-4 text-sm text-emerald-700">Thanks — we received your message.</p>}
           </form>
         </div>
       </section>

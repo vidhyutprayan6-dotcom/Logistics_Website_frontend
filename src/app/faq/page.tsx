@@ -2,43 +2,52 @@ import { SiteShell } from "@/components/SiteShell";
 
 const faqs = [
   {
-    q: "What is included in the Phase 1 MVP?",
-    a: "User registration/login with OTP, roles, profiles and addresses, shipment creation, shipment types, order lifecycle, tracking numbers and history, distance/weight pricing, Stripe + COD payments, invoices and admin dashboard.",
+    q: "Which features are included in Phase 1 MVP?",
+    a: "User accounts with OTP, roles, profile and addresses, shipment creation, order lifecycle, tracking numbers, distance/weight pricing, Stripe + COD payments, invoices and an admin dashboard.",
   },
   {
-    q: "How does tracking work?",
-    a: "Every order gets a unique tracking number. Anyone can look it up on the Tracking page and see status history events.",
+    q: "How do I track a shipment?",
+    a: "Use the Tracking page with the auto-generated tracking number created when the order is placed.",
   },
   {
-    q: "Which shipment types are available?",
+    q: "Which shipment types are supported?",
     a: "Same-day, express, standard and scheduled delivery.",
   },
   {
-    q: "How is price calculated?",
-    a: "Base fee + distance fee + weight fee, with a minimum fee. Pricing rules are configurable by admins.",
+    q: "How is pricing calculated?",
+    a: "Automatic calculation from base fee + distance rate + weight rate, with a minimum fee. Admins can edit pricing rules.",
   },
   {
-    q: "Which payments are supported?",
-    a: "Stripe card payments and Cash on Delivery. Invoices can be generated automatically.",
+    q: "What payment methods are available?",
+    a: "Online card payment through Stripe and Cash on Delivery. Paid orders can generate invoices automatically.",
   },
   {
-    q: "What is not included yet?",
-    a: "Live GPS fleet tracking, route optimization, native mobile apps and advanced SMS/push providers are outside Phase 1.",
+    q: "What is out of scope for Phase 1?",
+    a: "Real-time GPS tracking, route optimization, SMS/push providers and native mobile apps are planned for later phases.",
   },
 ];
 
 export default function FaqPage() {
   return (
     <SiteShell>
-      <section className="section-pad pt-8 md:pt-12">
+      <section className="section-pad pt-10 md:pt-16">
         <div className="container-main max-w-3xl">
-          <p className="kicker">FAQ</p>
-          <h1 className="heading mt-3 text-[clamp(2.2rem,5vw,3.4rem)]">Frequently asked questions</h1>
-          <div className="mt-8 space-y-3">
+          <p className="eyebrow">FAQ</p>
+          <h1 className="display mt-4 text-[clamp(2.5rem,7vw,4.8rem)]">
+            MVP questions,
+            <br />
+            clear answers
+          </h1>
+          <div className="mt-10 space-y-3">
             {faqs.map((item) => (
-              <details key={item.q} className="panel p-5">
-                <summary className="cursor-pointer list-none heading text-lg">{item.q}</summary>
-                <p className="mt-3 text-sm text-[var(--muted)]">{item.a}</p>
+              <details key={item.q} className="group lined-card p-5 open:soft-card open:border-transparent">
+                <summary className="cursor-pointer list-none display text-xl marker:content-none">
+                  <div className="flex items-center justify-between gap-4">
+                    <span>{item.q}</span>
+                    <span className="plus group-open:open">+</span>
+                  </div>
+                </summary>
+                <p className="mt-4 text-[var(--muted)]">{item.a}</p>
               </details>
             ))}
           </div>

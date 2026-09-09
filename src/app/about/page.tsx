@@ -4,40 +4,37 @@ import { SiteShell } from "@/components/SiteShell";
 export default function AboutPage() {
   return (
     <SiteShell>
-      <section className="section-pad pt-8 md:pt-12">
-        <div className="container-main max-w-3xl">
-          <p className="kicker">About</p>
-          <h1 className="heading mt-3 text-[clamp(2.2rem,5vw,3.6rem)]">About the Vettore Logistics MVP</h1>
-          <p className="mt-4 text-[var(--muted)]">
-            Vettore is a Phase 1 logistics platform focused on the features required to launch: user accounts, shipment workflows, tracking, pricing, payments and admin monitoring.
+      <section className="section-pad pt-10 md:pt-16">
+        <div className="container-main">
+          <p className="eyebrow">About</p>
+          <h1 className="display mt-4 max-w-4xl text-[clamp(2.5rem,7vw,5rem)]">
+            A logistics MVP
+            <br />
+            built for launch
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg text-[var(--muted)]">
+            Vettore is a Phase 1 logistics platform covering user accounts, shipment creation, order lifecycle, tracking, pricing, payments and admin control.
           </p>
         </div>
-
-        <div className="container-main mt-8 grid gap-4 md:grid-cols-3">
+        <div className="container-main mt-12 grid gap-4 md:grid-cols-3">
           {[
-            {
-              title: "In scope",
-              text: "Auth, RBAC, profiles, shipment creation, lifecycle, tracking IDs, distance/weight pricing, Stripe/COD, invoices, admin stats, responsive web UI.",
-            },
-            {
-              title: "Out of scope (Phase 1)",
-              text: "Live GPS fleet tracking, route optimization, native mobile apps, multi-warehouse inventory and advanced notification providers.",
-            },
-            {
-              title: "Stack",
-              text: "Frontend on Vercel, backend API on Render, database on Supabase, JWT authentication and Stripe for MVP payments.",
-            },
-          ].map((item) => (
-            <article key={item.title} className="panel p-6">
-              <h2 className="heading text-xl">{item.title}</h2>
-              <p className="mt-3 text-sm text-[var(--muted)]">{item.text}</p>
+            ["Users", "Registration, OTP, password reset, profiles, addresses and RBAC roles."],
+            ["Orders", "Create shipments, choose delivery type, update status and prepare proof of delivery."],
+            ["Operations", "Track parcels, calculate prices, collect payments and monitor KPIs."],
+          ].map(([title, text]) => (
+            <article key={title} className="lined-card p-7">
+              <h2 className="display text-2xl">{title}</h2>
+              <p className="mt-3 text-[var(--muted)]">{text}</p>
             </article>
           ))}
         </div>
-
-        <div className="container-main mt-8">
-          <Link href="/contact" className="btn btn-primary">
-            Contact the team
+        <div className="container-main mt-12 overflow-hidden rounded-[2rem] bg-[var(--ink)] p-8 text-white md:p-12">
+          <h2 className="display max-w-3xl text-3xl md:text-5xl">Aligned to the client MVP plan</h2>
+          <p className="mt-4 max-w-2xl text-white/70">
+            Real-time GPS fleet optimization and mobile apps are out of Phase 1 scope. This release focuses on the core platform needed to go live.
+          </p>
+          <Link href="/contact" className="btn btn-accent mt-8">
+            Discuss requirements
           </Link>
         </div>
       </section>

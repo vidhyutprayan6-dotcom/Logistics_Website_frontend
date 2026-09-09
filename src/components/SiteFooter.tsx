@@ -3,47 +3,45 @@ import { Logo } from "@/components/Logo";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[var(--line)] bg-[var(--navy)] text-white">
-      <div className="container-main section-pad grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="bg-[var(--ink)] text-white">
+      <div className="container-main section-pad grid gap-10 md:grid-cols-[1.35fr_1fr_1fr]">
         <div>
           <Logo variant="light" />
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
-            Phase 1 logistics MVP: accounts, shipments, lifecycle tracking, distance/weight pricing, Stripe & COD payments, and admin dashboard.
+          <p className="mt-5 max-w-sm text-white/70">
+            Logistics MVP for shipment creation, order lifecycle, tracking, pricing, payments and admin control.
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            <Link href="/register" className="btn btn-mint">
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/register" className="btn btn-accent">
               Create account
             </Link>
-            <Link href="/tracking" className="btn btn-ghost-light">
-              Track shipment
+            <Link href="/contact" className="btn btn-ghost border-white/35 text-white">
+              Contact
             </Link>
           </div>
         </div>
-
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/45">Product</p>
-          <ul className="mt-4 space-y-2.5 text-sm text-white/80">
+          <p className="eyebrow text-white/45">Pages</p>
+          <ul className="mt-4 space-y-3 text-white/80">
             <li><Link href="/services">Services</Link></li>
             <li><Link href="/pricing">Pricing</Link></li>
             <li><Link href="/tracking">Tracking</Link></li>
-            <li><Link href="/dashboard">Admin dashboard</Link></li>
+            <li><Link href="/faq">FAQ</Link></li>
           </ul>
         </div>
-
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/45">Company</p>
-          <ul className="mt-4 space-y-2.5 text-sm text-white/80">
-            <li><Link href="/about">About</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
-            <li><Link href="/faq">FAQ</Link></li>
-            <li><Link href="/login">Login</Link></li>
+          <p className="eyebrow text-white/45">MVP modules</p>
+          <ul className="mt-4 space-y-3 text-white/80">
+            <li>Users & roles</li>
+            <li>Orders & tracking</li>
+            <li>Pricing & payments</li>
+            <li>Admin dashboard</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container-main flex flex-col gap-2 py-4 text-xs text-white/45 md:flex-row md:justify-between">
+        <div className="container-main flex flex-col gap-2 py-5 text-sm text-white/45 md:flex-row md:justify-between">
           <p>© {new Date().getFullYear()} Vettore Logistics</p>
-          <p>Temporary logo placeholder · Final brand assets can replace Logo component</p>
+          <p>Phase 1 MVP · Placeholder logo ready to replace</p>
         </div>
       </div>
     </footer>

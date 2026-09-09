@@ -35,15 +35,18 @@ export default function TrackingPage() {
 
   return (
     <SiteShell>
-      <section className="section-pad pt-8 md:pt-12">
-        <div className="container-main max-w-2xl">
-          <p className="kicker">Tracking</p>
-          <h1 className="heading mt-3 text-[clamp(2.2rem,5vw,3.4rem)]">Track shipment by tracking number</h1>
-          <p className="mt-4 text-[var(--muted)]">
-            Enter the unique tracking ID generated when the shipment was created to view status history.
+      <section className="section-pad pt-10 md:pt-16">
+        <div className="container-main max-w-3xl">
+          <p className="eyebrow">Tracking</p>
+          <h1 className="display mt-4 text-[clamp(2.5rem,7vw,4.8rem)]">
+            Track by
+            <br />
+            tracking number
+          </h1>
+          <p className="mt-4 text-lg text-[var(--muted)]">
+            Enter the unique tracking ID generated when the shipment was created.
           </p>
-
-          <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-3 sm:flex-row">
             <input
               value={code}
               onChange={(e) => setCode(e.target.value)}
@@ -51,23 +54,22 @@ export default function TrackingPage() {
               className="field"
               required
             />
-            <button type="submit" disabled={loading} className="btn btn-primary shrink-0 disabled:opacity-60">
-              {loading ? "Searching..." : "Track"}
+            <button type="submit" disabled={loading} className="btn btn-dark shrink-0 disabled:opacity-60">
+              {loading ? "Checking..." : "Track parcel"}
             </button>
           </form>
-
           {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
-
           {data && (
-            <section className="panel mt-6 p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--muted)]">{data.trackingNumber}</p>
-              <h2 className="heading mt-2 text-2xl capitalize">{data.status.replaceAll("_", " ")}</h2>
-              <p className="mt-2 text-sm text-[var(--muted)]">
+            <section className="soft-card mt-8 p-6 md:p-8">
+              <p className="eyebrow">{data.trackingNumber}</p>
+              <h2 className="display mt-2 text-3xl capitalize">{data.status.replaceAll("_", " ")}</h2>
+              <p className="mt-2 text-[var(--muted)]">
                 {data.pickup.city} → {data.delivery.city}
               </p>
-              <ul className="mt-6 space-y-4">
+              <ul className="mt-8 space-y-0">
                 {data.events.map((event, idx) => (
-                  <li key={`${event.at}-${idx}`} className="border-l-2 border-[var(--mint)] pl-4">
+                  <li key={`${event.at}-${idx}`} className="relative border-l border-[var(--line)] pl-5 pb-6 last:pb-0">
+                    <span className="absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full bg-[var(--accent)]" />
                     <p className="text-sm font-semibold capitalize">{event.status.replaceAll("_", " ")}</p>
                     <p className="mt-1 text-sm text-[var(--muted)]">{event.message}</p>
                     <p className="mt-1 text-xs text-[var(--muted)]">{new Date(event.at).toLocaleString()}</p>
