@@ -34,45 +34,28 @@ export default function LoginPage() {
 
   return (
     <SiteShell>
-      <section className="section-pad pt-10 md:pt-16">
-        <div className="container-main grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+      <section className="section-pad pt-8 md:pt-12">
+        <div className="container-main grid gap-8 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="eyebrow">Login</p>
-            <h1 className="display mt-4 text-[clamp(2.6rem,7vw,4.8rem)]">
-              Sign in to
-              <br />
-              your account
-            </h1>
-            <p className="mt-4 max-w-md text-[var(--muted)]">
-              Customers, dispatchers, drivers and admins use role-based access after email/phone login.
+            <p className="kicker">Login</p>
+            <h1 className="heading mt-3 text-[clamp(2.2rem,5vw,3.4rem)]">Login with email or phone account</h1>
+            <p className="mt-4 text-[var(--muted)]">
+              Access role-based features for customers, dispatchers, drivers and admins.
             </p>
           </div>
-
-          <form onSubmit={onSubmit} className="rounded-[1.8rem] border border-[var(--line)] bg-white p-6 soft-shadow md:p-8">
-            <label className="block text-sm font-medium">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="field mt-2"
-              required
-            />
+          <form onSubmit={onSubmit} className="panel p-6 md:p-7">
+            <label className="text-sm font-medium">Email</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="field mt-2" required />
             <label className="mt-4 block text-sm font-medium">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="field mt-2"
-              required
-            />
-            <button className="btn btn-primary mt-6 w-full" disabled={loading}>
-              {loading ? "Logging in..." : "Login"}
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="field mt-2" required />
+            <button className="btn btn-primary mt-5 w-full" disabled={loading}>
+              {loading ? "Signing in..." : "Login"}
             </button>
             {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
-            <p className="mt-5 text-sm text-[var(--muted)]">
-              New here?{" "}
-              <Link href="/register" className="font-semibold text-[var(--ink)] underline underline-offset-4">
-                Create an account
+            <p className="mt-4 text-sm text-[var(--muted)]">
+              No account yet?{" "}
+              <Link href="/register" className="font-semibold text-[var(--navy)] underline underline-offset-2">
+                Register
               </Link>
             </p>
           </form>

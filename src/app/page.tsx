@@ -1,301 +1,205 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
 import { SiteShell } from "@/components/SiteShell";
 
-const stats = [
-  { label: "shipment types", value: "4" },
-  { label: "user roles", value: "5" },
-  { label: "order statuses", value: "6" },
-  { label: "pricing factors", value: "2" },
-  { label: "payment options", value: "2" },
+const lifecycle = [
+  "Pending",
+  "Assigned",
+  "Picked Up",
+  "In Transit",
+  "Delivered",
 ];
 
-const featureRows = [
+const modules = [
   {
-    tag: "Orders",
+    title: "Users & roles",
+    text: "Email/phone registration, OTP verification, password reset, and RBAC for Customer, Dispatcher, Driver, Admin and Super Admin.",
+  },
+  {
+    title: "Profile & addresses",
+    text: "Manage personal info, address book and saved locations for faster shipment creation.",
+  },
+  {
     title: "Shipment creation",
-    text: "Pickup address, delivery address, package details, weight and dimensions in one flow.",
-    href: "/register",
+    text: "Capture pickup, delivery, package details, weight and dimensions in one order form.",
   },
   {
-    tag: "Tracking",
-    title: "Tracking number & history",
-    text: "Auto-generated unique tracking IDs with full movement logs from creation to delivery.",
-    href: "/tracking",
+    title: "Tracking",
+    text: "Auto-generated tracking numbers with public lookup and full movement history.",
   },
   {
-    tag: "Pricing",
-    title: "Distance & weight pricing",
-    text: "Automatic cost calculation with admin-editable pricing rules for each shipment type.",
-    href: "/pricing",
+    title: "Pricing engine",
+    text: "Automatic cost from distance and weight, with admin-editable rules per shipment type.",
   },
   {
-    tag: "Payments",
-    title: "Stripe checkout & COD",
-    text: "Online card payments, cash on delivery, and automatic invoice generation.",
-    href: "/services",
+    title: "Payments & invoices",
+    text: "Stripe checkout, Cash on Delivery, payment confirmation and automatic invoice records.",
   },
 ];
 
-const platformModules = [
-  {
-    title: "Users & access",
-    subtitle: "Registration, login and roles",
-    points: [
-      "Email & phone registration with OTP verification",
-      "Password reset flow",
-      "Roles: Customer, Dispatcher, Driver, Admin, Super Admin",
-      "Profile, address book and saved locations",
-    ],
-  },
-  {
-    title: "Orders & lifecycle",
-    subtitle: "From pending to delivered",
-    points: [
-      "Same-day, express, standard and scheduled delivery",
-      "Pending → Assigned → Picked Up → In Transit → Delivered → Cancelled",
-      "Dispatcher and driver status updates",
-      "Proof of delivery fields ready for signature, photo and receiver name",
-    ],
-  },
-  {
-    title: "Tracking & visibility",
-    subtitle: "Always know where it is",
-    points: [
-      "Public tracking lookup page",
-      "Unique tracking number on every order",
-      "Full shipment movement history",
-      "City-level status updates for customers",
-    ],
-  },
-  {
-    title: "Admin & operations",
-    subtitle: "Control the platform",
-    points: [
-      "Dashboard for revenue, orders, deliveries and drivers",
-      "Order management list and detail views",
-      "User role and status management",
-      "Responsive layout for mobile, tablet and desktop",
-    ],
-  },
-];
-
-const roles = [
-  {
-    name: "Customer",
-    text: "Create shipments, pay online or with COD, and track every order.",
-  },
-  {
-    name: "Dispatcher",
-    text: "Assign drivers and move orders through the delivery lifecycle.",
-  },
-  {
-    name: "Driver",
-    text: "Update pickup, transit and delivery status for assigned shipments.",
-  },
-  {
-    name: "Admin",
-    text: "Manage users, monitor orders and oversee platform performance.",
-  },
+const shipmentTypes = [
+  { name: "Same-day", detail: "Priority local delivery for urgent packages." },
+  { name: "Express", detail: "Faster intercity shipping with premium rates." },
+  { name: "Standard", detail: "Balanced everyday delivery for regular volume." },
+  { name: "Scheduled", detail: "Plan pickup/delivery for a chosen time window." },
 ];
 
 export default function Home() {
-  const [openModule, setOpenModule] = useState(0);
-
   return (
     <SiteShell>
-      <section className="hero-visual relative min-h-[88vh] text-white">
-        <div className="container-main flex min-h-[88vh] flex-col justify-end pb-14 pt-24 md:justify-center md:pb-20">
-          <p className="eyebrow reveal text-white/70">Vettore Logistics</p>
-          <h1 className="display reveal reveal-delay-1 mt-5 max-w-5xl text-[clamp(2.6rem,8.5vw,6.2rem)]">
-            Ship, track
-            <br />
-            and deliver
-            <br />
-            with clarity
-          </h1>
-          <p className="reveal reveal-delay-2 mt-6 max-w-xl text-base text-white/80 md:text-lg">
-            A logistics platform for shipment creation, order lifecycle, pricing, payments and real operational control.
-          </p>
-          <div className="reveal reveal-delay-3 mt-8 flex flex-wrap gap-3">
-            <Link href="/register" className="btn btn-accent">
-              Create account
-            </Link>
-            <Link href="/tracking" className="btn btn-ghost border-white/40 text-white">
-              Track shipment
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad">
-        <div className="container-main grid gap-6 md:grid-cols-2">
-          <article className="rounded-[1.8rem] bg-white p-8 soft-shadow md:p-10">
-            <p className="eyebrow">For customers</p>
-            <h2 className="display mt-4 text-3xl md:text-5xl">Create shipments without friction</h2>
-            <p className="mt-4 text-[var(--muted)]">
-              Register with email or phone, verify with OTP, save addresses, choose a shipment type and get an instant price.
-            </p>
-            <ul className="mt-6 space-y-2 text-sm font-medium">
-              <li>Shipment creation form</li>
-              <li>Same-day, express, standard, scheduled</li>
-              <li>Public tracking page</li>
-            </ul>
-          </article>
-          <article className="rounded-[1.8rem] bg-[var(--ink)] p-8 text-white md:p-10">
-            <p className="eyebrow text-white/50">For operations</p>
-            <h2 className="display mt-4 text-3xl md:text-5xl">Run the full order lifecycle</h2>
-            <p className="mt-4 text-white/70">
-              Dispatchers assign drivers, drivers update status, admins monitor revenue and deliveries from one dashboard.
-            </p>
-            <ul className="mt-6 space-y-2 text-sm font-medium text-white/90">
-              <li>Role-based access control</li>
-              <li>Order status transitions</li>
-              <li>Admin revenue & delivery overview</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section className="overflow-hidden border-y border-[var(--line)] bg-white py-6">
-        <div className="marquee-track gap-10 px-4">
-          {[...stats, ...stats, ...stats, ...stats].map((item, idx) => (
-            <div key={`${item.label}-${idx}`} className="flex items-baseline gap-3 whitespace-nowrap">
-              <span className="display text-3xl">{item.value}</span>
-              <span className="text-sm text-[var(--muted)]">{item.label}</span>
+      <section className="section-pad pt-8 md:pt-12">
+        <div className="container-main overflow-hidden rounded-[1.5rem] hero-panel text-white">
+          <div className="grid gap-8 p-7 md:grid-cols-[1.15fr_0.85fr] md:p-12 lg:p-14">
+            <div>
+              <p className="kicker fade-up text-[var(--mint)]">Vettore Logistics MVP</p>
+              <h1 className="heading fade-up fade-up-1 mt-4 text-[clamp(2.3rem,6vw,4.2rem)]">
+                Create shipments, track orders and run delivery operations
+              </h1>
+              <p className="fade-up fade-up-2 mt-5 max-w-xl text-base text-white/80 md:text-lg">
+                Phase 1 platform for accounts, order lifecycle, pricing, payments and admin overview — built for web on Vercel, Render and Supabase.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/register" className="btn btn-mint">
+                  Register to ship
+                </Link>
+                <Link href="/tracking" className="btn btn-ghost-light">
+                  Open tracking
+                </Link>
+              </div>
             </div>
-          ))}
+
+            <div className="rounded-[1.15rem] border border-white/15 bg-white/10 p-5 backdrop-blur-sm md:p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/60">Quick track</p>
+              <p className="mt-2 text-sm text-white/80">Use a tracking number from any created shipment.</p>
+              <Link href="/tracking" className="btn btn-mint mt-5 w-full">
+                Go to tracking page
+              </Link>
+              <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
+                <div className="rounded-xl bg-white/10 p-3">
+                  <p className="text-white/55">Shipment types</p>
+                  <p className="mt-1 text-xl font-semibold">4</p>
+                </div>
+                <div className="rounded-xl bg-white/10 p-3">
+                  <p className="text-white/55">User roles</p>
+                  <p className="mt-1 text-xl font-semibold">5</p>
+                </div>
+                <div className="rounded-xl bg-white/10 p-3">
+                  <p className="text-white/55">Order statuses</p>
+                  <p className="mt-1 text-xl font-semibold">6</p>
+                </div>
+                <div className="rounded-xl bg-white/10 p-3">
+                  <p className="text-white/55">Payment modes</p>
+                  <p className="mt-1 text-xl font-semibold">2</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="section-pad">
-        <div className="container-main grid items-end gap-8 md:grid-cols-[1.2fr_0.8fr]">
-          <div>
-            <p className="eyebrow">Platform</p>
-            <h2 className="display mt-4 max-w-3xl text-[clamp(2.2rem,6vw,4.4rem)]">
-              One logistics system
-              <br />
-              for every role
-            </h2>
+      <section className="pb-4">
+        <div className="container-main">
+          <p className="kicker">Order lifecycle</p>
+          <h2 className="heading mt-3 text-2xl md:text-3xl">Status flow used in the MVP</h2>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {lifecycle.map((step, index) => (
+              <div key={step} className="flex items-center gap-2">
+                <span className="rounded-lg bg-white px-3 py-2 text-sm font-semibold text-[var(--navy)] shadow-sm ring-1 ring-[var(--line)]">
+                  {index + 1}. {step}
+                </span>
+                {index < lifecycle.length - 1 && <span className="text-[var(--muted)]">→</span>}
+              </div>
+            ))}
+            <span className="rounded-lg bg-[var(--sand)] px-3 py-2 text-sm font-semibold text-[var(--navy)] ring-1 ring-[var(--line)]">
+              Cancelled (when needed)
+            </span>
           </div>
-          <p className="max-w-md text-[var(--muted)] md:pb-2">
-            From customer registration to admin reporting, Vettore covers the Phase 1 MVP your operations need to launch.
-          </p>
-        </div>
-        <div className="container-main mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {roles.map((role) => (
-            <article key={role.name} className="rounded-[1.4rem] border border-[var(--line)] bg-white p-6">
-              <h3 className="display text-2xl">{role.name}</h3>
-              <p className="mt-3 text-sm text-[var(--muted)]">{role.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-t border-[var(--line)] bg-white section-pad">
-        <div className="container-main flex items-end justify-between gap-4">
-          <div>
-            <p className="eyebrow">Core features</p>
-            <h2 className="display mt-3 text-3xl md:text-5xl">What the MVP delivers</h2>
-          </div>
-          <Link href="/services" className="hidden text-sm font-semibold underline underline-offset-4 md:inline">
-            View all services
-          </Link>
-        </div>
-
-        <div className="container-main mt-10 space-y-4">
-          {featureRows.map((item) => (
-            <Link
-              key={item.title}
-              href={item.href}
-              className="group grid gap-4 rounded-[1.5rem] border border-[var(--line)] p-6 transition hover:-translate-y-0.5 hover:border-[var(--ink)] hover:bg-[var(--paper)] md:grid-cols-[140px_1.1fr_1fr_auto] md:items-center md:p-8"
-            >
-              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">{item.tag}</span>
-              <h3 className="display text-2xl md:text-3xl">{item.title}</h3>
-              <p className="text-sm text-[var(--muted)] md:text-base">{item.text}</p>
-              <span className="text-2xl transition group-hover:translate-x-1">→</span>
-            </Link>
-          ))}
         </div>
       </section>
 
       <section className="section-pad">
         <div className="container-main">
-          <p className="eyebrow">Modules</p>
-          <h2 className="display mt-3 max-w-3xl text-3xl md:text-5xl">Built around your logistics workflow</h2>
-        </div>
-        <div className="container-main mt-10 space-y-3">
-          {platformModules.map((module, index) => {
-            const open = openModule === index;
-            return (
-              <article key={module.title} className="overflow-hidden rounded-[1.5rem] border border-[var(--line)] bg-white">
-                <button
-                  type="button"
-                  className="flex w-full items-start justify-between gap-4 p-6 text-left md:p-8"
-                  onClick={() => setOpenModule(open ? -1 : index)}
-                >
-                  <div>
-                    <p className="text-xs font-semibold text-[var(--muted)]">0{index + 1}</p>
-                    <h3 className="display mt-2 text-2xl md:text-3xl">{module.title}</h3>
-                    <p className="mt-2 text-[var(--muted)]">{module.subtitle}</p>
-                  </div>
-                  <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--paper-2)] text-xl transition ${open ? "rotate-45" : ""}`}>
-                    +
-                  </span>
-                </button>
-                {open && (
-                  <ul className="space-y-2 border-t border-[var(--line)] px-6 pb-7 pt-5 text-sm md:px-8">
-                    {module.points.map((point) => (
-                      <li key={point} className="flex gap-2">
-                        <span className="text-[var(--accent)]">•</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+          <p className="kicker">MVP modules</p>
+          <h2 className="heading mt-3 max-w-2xl text-3xl md:text-4xl">Everything required for Phase 1 launch</h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {modules.map((item) => (
+              <article key={item.title} className="panel p-5 md:p-6">
+                <h3 className="heading text-xl">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">{item.text}</p>
               </article>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-[var(--line)] bg-[var(--ink)] text-white section-pad">
-        <div className="container-main">
-          <p className="eyebrow text-white/50">Shipment types</p>
-          <h2 className="display mt-4 max-w-3xl text-3xl md:text-5xl">Four delivery modes for every use case</h2>
-        </div>
-        <div className="container-main mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {[
-            { name: "Same-day", text: "Priority local delivery when speed is critical." },
-            { name: "Express", text: "Faster intercity shipping with premium handling." },
-            { name: "Standard", text: "Reliable everyday delivery at balanced cost." },
-            { name: "Scheduled", text: "Plan pickup and delivery for a chosen time window." },
-          ].map((item) => (
-            <article key={item.name} className="rounded-[1.4rem] border border-white/10 bg-white/5 p-6">
-              <h3 className="display text-2xl">{item.name}</h3>
-              <p className="mt-3 text-sm text-white/70">{item.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-pad">
-        <div className="container-main overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,#111,#2a2a2a_55%,#ff4d1a)] p-8 text-white md:p-14">
-          <p className="eyebrow text-white/60">Get started</p>
-          <h2 className="display mt-4 max-w-3xl text-[clamp(2rem,5vw,4rem)]">
-            Launch your logistics MVP with the features that matter
-          </h2>
-          <p className="mt-4 max-w-xl text-white/75">
-            Accounts, shipments, tracking, pricing, Stripe payments and an admin dashboard — ready for Vercel, Render and Supabase.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/register" className="btn btn-light">
-              Register now
+      <section className="section-pad pt-0">
+        <div className="container-main grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-[1.25rem] bg-[var(--navy)] p-7 text-white md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--mint)]">Shipment types</p>
+            <h2 className="heading mt-3 text-3xl">Choose how each package moves</h2>
+            <p className="mt-3 text-sm text-white/70">
+              Customers select a type during shipment creation. Pricing rules apply automatically per type.
+            </p>
+            <Link href="/services" className="btn btn-mint mt-6">
+              View services
             </Link>
-            <Link href="/contact" className="btn btn-ghost border-white/35 text-white">
-              Contact us
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {shipmentTypes.map((item) => (
+              <article key={item.name} className="panel p-5">
+                <h3 className="heading text-lg">{item.name}</h3>
+                <p className="mt-2 text-sm text-[var(--muted)]">{item.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad pt-0">
+        <div className="container-main panel overflow-hidden">
+          <div className="grid md:grid-cols-2">
+            <div className="border-b border-[var(--line)] p-7 md:border-b-0 md:border-r md:p-8">
+              <p className="kicker">Pricing</p>
+              <h2 className="heading mt-3 text-2xl md:text-3xl">Distance + weight calculation</h2>
+              <p className="mt-3 text-sm text-[var(--muted)]">
+                Quote formula: base fee + (km × per-km rate) + (kg × per-kg rate), with a minimum fee. Admins can edit rules.
+              </p>
+              <Link href="/pricing" className="btn btn-outline mt-5">
+                Pricing details
+              </Link>
+            </div>
+            <div className="bg-[var(--sand)] p-7 md:p-8">
+              <p className="kicker">Payments</p>
+              <h2 className="heading mt-3 text-2xl md:text-3xl">Stripe and Cash on Delivery</h2>
+              <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
+                <li>• Online card checkout with Stripe</li>
+                <li>• COD option for eligible orders</li>
+                <li>• Automatic invoice generation after payment</li>
+              </ul>
+              <Link href="/register" className="btn btn-primary mt-5">
+                Start with an account
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad pt-0">
+        <div className="container-main">
+          <p className="kicker">Roles</p>
+          <h2 className="heading mt-3 text-3xl">Who uses the platform</h2>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {["Customer", "Dispatcher", "Driver", "Admin", "Super Admin"].map((role) => (
+              <div key={role} className="panel px-4 py-5 text-center">
+                <p className="heading text-base">{role}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/dashboard" className="btn btn-primary">
+              Admin dashboard
+            </Link>
+            <Link href="/about" className="btn btn-outline">
+              About the MVP
             </Link>
           </div>
         </div>

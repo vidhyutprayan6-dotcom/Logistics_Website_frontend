@@ -1,25 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0c0c0c;
-  --ink-soft: #1a1a1a;
-  --paper: #f3f3f1;
-  --paper-2: #e8e8e4;
-  --muted: #5c5c5c;
-  --line: rgba(12, 12, 12, 0.12);
-  --accent: #ff4d1a;
-  --accent-soft: #ffd8cc;
+  --navy: #0f2744;
+  --navy-2: #163a5c;
+  --sky: #eaf1f5;
+  --sky-2: #d7e6ef;
+  --mint: #1dbf9a;
+  --mint-dark: #149876;
+  --sand: #f7f4ee;
+  --muted: #5b7388;
+  --line: rgba(15, 39, 68, 0.12);
   --surface: #ffffff;
-  --background: var(--paper);
-  --foreground: var(--ink);
+  --background: var(--sky);
+  --foreground: var(--navy);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-ink: var(--ink);
-  --color-paper: var(--paper);
-  --color-accent: var(--accent);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
 }
@@ -35,8 +33,11 @@ html {
 body {
   margin: 0;
   min-height: 100%;
-  color: var(--ink);
-  background: var(--paper);
+  color: var(--navy);
+  background:
+    radial-gradient(ellipse 80% 50% at 100% -10%, rgba(29, 191, 154, 0.14), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 0% 20%, rgba(22, 58, 92, 0.08), transparent 45%),
+    var(--sky);
   font-family: var(--font-body), system-ui, sans-serif;
   text-rendering: optimizeLegibility;
 }
@@ -52,104 +53,105 @@ img {
 }
 
 .container-main {
-  width: min(1180px, calc(100% - 2.5rem));
+  width: min(1120px, calc(100% - 2rem));
   margin-inline: auto;
 }
 
 @media (min-width: 768px) {
   .container-main {
-    width: min(1180px, calc(100% - 4rem));
+    width: min(1120px, calc(100% - 3.5rem));
   }
 }
 
-.display {
+.heading {
   font-family: var(--font-display), sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 0.95;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
-.eyebrow {
-  font-size: 0.75rem;
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--mint-dark);
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  min-height: 3rem;
-  padding: 0.75rem 1.35rem;
-  border-radius: 999px;
+  gap: 0.45rem;
+  min-height: 2.9rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 0.75rem;
   border: 1px solid transparent;
   font-size: 0.95rem;
   font-weight: 600;
-  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-primary {
-  background: var(--ink);
+  background: var(--navy);
   color: white;
 }
 
 .btn-primary:hover {
-  background: var(--accent);
+  background: var(--navy-2);
+  box-shadow: 0 10px 24px rgba(15, 39, 68, 0.18);
 }
 
-.btn-accent {
-  background: var(--accent);
+.btn-mint {
+  background: var(--mint);
+  color: #053528;
+}
+
+.btn-mint:hover {
+  background: var(--mint-dark);
   color: white;
 }
 
-.btn-accent:hover {
-  background: var(--ink);
-}
-
-.btn-ghost {
+.btn-outline {
   background: transparent;
-  border-color: currentColor;
+  border-color: var(--line);
+  color: var(--navy);
 }
 
-.btn-ghost:hover {
-  background: var(--ink);
-  color: white;
-  border-color: var(--ink);
-}
-
-.btn-light {
+.btn-outline:hover {
+  border-color: var(--navy);
   background: white;
-  color: var(--ink);
 }
 
-.btn-light:hover {
-  background: var(--accent);
+.btn-ghost-light {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.35);
   color: white;
+}
+
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .field {
   width: 100%;
-  min-height: 3.1rem;
+  min-height: 3rem;
   border: 1px solid var(--line);
   background: white;
-  border-radius: 0.9rem;
-  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  padding: 0.8rem 1rem;
   font: inherit;
-  color: var(--ink);
+  color: var(--navy);
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .field:focus {
-  border-color: var(--ink);
-  box-shadow: 0 0 0 4px rgba(12, 12, 12, 0.06);
+  border-color: var(--mint);
+  box-shadow: 0 0 0 4px rgba(29, 191, 154, 0.15);
 }
 
 .textarea {
@@ -157,32 +159,32 @@ img {
   resize: vertical;
 }
 
-.surface-card {
+.panel {
   background: white;
   border: 1px solid var(--line);
-  border-radius: 1.4rem;
+  border-radius: 1.15rem;
 }
 
-.reveal {
-  animation: rise 0.8s ease both;
+.section-pad {
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
 }
 
-.reveal-delay-1 {
-  animation-delay: 0.1s;
+.fade-up {
+  animation: fadeUp 0.7s ease both;
 }
 
-.reveal-delay-2 {
-  animation-delay: 0.2s;
+.fade-up-1 {
+  animation-delay: 0.08s;
 }
 
-.reveal-delay-3 {
-  animation-delay: 0.3s;
+.fade-up-2 {
+  animation-delay: 0.16s;
 }
 
-@keyframes rise {
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -190,45 +192,15 @@ img {
   }
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 28s linear infinite;
-}
-
-.hero-visual {
+.hero-panel {
   background:
-    linear-gradient(120deg, rgba(12, 12, 12, 0.72), rgba(12, 12, 12, 0.38)),
-    radial-gradient(circle at 80% 20%, rgba(255, 77, 26, 0.35), transparent 35%),
-    url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2400&q=80")
+    linear-gradient(145deg, rgba(15, 39, 68, 0.92), rgba(22, 58, 92, 0.78)),
+    url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=2200&q=80")
       center / cover no-repeat;
 }
 
-.section-pad {
-  padding-block: clamp(4rem, 8vw, 7rem);
-}
-
-.divider {
-  height: 1px;
-  background: var(--line);
-}
-
-.soft-shadow {
-  box-shadow: 0 20px 60px rgba(12, 12, 12, 0.08);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .marquee-track,
+  .fade-up,
   .btn {
     animation: none !important;
     transition: none !important;

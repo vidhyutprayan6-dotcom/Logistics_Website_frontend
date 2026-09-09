@@ -4,61 +4,46 @@ import { SiteShell } from "@/components/SiteShell";
 const services = [
   {
     title: "Same-day delivery",
-    copy: "Priority local shipments for urgent packages that must arrive the same day.",
-    items: ["Shipment type: same_day", "Higher base and per-km rate", "Fast dispatcher assignment"],
+    items: ["Shipment type for urgent local routes", "Higher base and distance rates", "Dispatcher assignment support"],
   },
   {
     title: "Express delivery",
-    copy: "Accelerated intercity shipping when customers need speed with controlled cost.",
-    items: ["Shipment type: express", "Premium distance pricing", "Priority lifecycle handling"],
+    items: ["Faster intercity option", "Premium pricing rule set", "Priority handling in lifecycle"],
   },
   {
     title: "Standard delivery",
-    copy: "Everyday reliable shipping with balanced pricing for regular parcel volume.",
-    items: ["Shipment type: standard", "Distance + weight calculation", "Full tracking history"],
+    items: ["Default everyday shipping mode", "Distance + weight pricing", "Full tracking history"],
   },
   {
     title: "Scheduled delivery",
-    copy: "Book pickup and delivery for a planned time window to reduce failed attempts.",
-    items: ["Shipment type: scheduled", "Scheduled pickup datetime", "Customer-friendly planning"],
+    items: ["Choose planned pickup time", "Reduce failed delivery attempts", "Useful for recurring business needs"],
   },
   {
-    title: "Order lifecycle management",
-    copy: "Move every shipment through a clear status chain managed by dispatchers and drivers.",
-    items: ["Pending → Assigned → Picked Up", "In Transit → Delivered", "Cancelled when required"],
+    title: "Order lifecycle control",
+    items: ["Pending to Delivered status chain", "Driver and dispatcher updates", "Cancellation support"],
   },
   {
     title: "Tracking & payments",
-    copy: "Give customers visibility and flexible payment options from checkout to invoice.",
-    items: ["Auto tracking numbers", "Stripe card payments", "Cash on delivery + invoices"],
+    items: ["Unique tracking numbers", "Stripe checkout and COD", "Invoice generation"],
   },
 ];
 
 export default function ServicesPage() {
   return (
     <SiteShell>
-      <section className="section-pad pt-10 md:pt-16">
-        <div className="container-main">
-          <p className="eyebrow">Services</p>
-          <h1 className="display mt-4 max-w-4xl text-[clamp(2.6rem,8vw,5.2rem)]">
-            Logistics services
-            <br />
-            in the MVP scope
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-[var(--muted)]">
-            These services map directly to the client requirements: shipment types, lifecycle control, tracking and payments.
+      <section className="section-pad pt-8 md:pt-12">
+        <div className="container-main max-w-3xl">
+          <p className="kicker">Services</p>
+          <h1 className="heading mt-3 text-[clamp(2.2rem,5vw,3.6rem)]">MVP delivery and operations services</h1>
+          <p className="mt-4 text-[var(--muted)]">
+            Service offerings map to Phase 1 requirements: shipment types, lifecycle management, tracking and payments.
           </p>
         </div>
-
-        <div className="container-main mt-12 grid gap-4 md:grid-cols-2">
-          {services.map((service, index) => (
-            <article key={service.title} className="rounded-[1.6rem] border border-[var(--line)] bg-white p-7 md:p-9">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-[var(--muted)]">0{index + 1}</span>
-              </div>
-              <h2 className="display mt-5 text-3xl">{service.title}</h2>
-              <p className="mt-3 text-[var(--muted)]">{service.copy}</p>
-              <ul className="mt-6 space-y-2 border-t border-[var(--line)] pt-5 text-sm">
+        <div className="container-main mt-8 grid gap-4 md:grid-cols-2">
+          {services.map((service) => (
+            <article key={service.title} className="panel p-6">
+              <h2 className="heading text-xl">{service.title}</h2>
+              <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
                 {service.items.map((item) => (
                   <li key={item}>• {item}</li>
                 ))}
@@ -66,10 +51,9 @@ export default function ServicesPage() {
             </article>
           ))}
         </div>
-
-        <div className="container-main mt-12">
+        <div className="container-main mt-8">
           <Link href="/register" className="btn btn-primary">
-            Create a shipment account
+            Create account
           </Link>
         </div>
       </section>

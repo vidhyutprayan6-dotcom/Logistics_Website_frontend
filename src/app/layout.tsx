@@ -1,27 +1,28 @@
 import type { Metadata } from "next";
-import { Figtree, Syne } from "next/font/google";
+import { Sora, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 
-const body = Figtree({
+const body = Source_Sans_3({
   variable: "--font-body",
   subsets: ["latin"],
 });
 
-const display = Syne({
+const display = Sora({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Vettore Logistics",
-  description: "Smart logistics platform for shipment creation, tracking, pricing and delivery operations.",
+  title: "Vettore Logistics | MVP Platform",
+  description:
+    "Logistics MVP for user accounts, shipment creation, order lifecycle, tracking, pricing, payments and admin dashboard.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${body.variable} ${display.variable} h-full`}>
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="flex min-h-full flex-col antialiased">{children}</body>
     </html>
   );
 }

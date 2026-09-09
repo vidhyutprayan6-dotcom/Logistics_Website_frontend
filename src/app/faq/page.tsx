@@ -2,52 +2,43 @@ import { SiteShell } from "@/components/SiteShell";
 
 const faqs = [
   {
-    q: "Which features are included in Phase 1 MVP?",
-    a: "User accounts with OTP, roles, profile and addresses, shipment creation, order lifecycle, tracking numbers, distance/weight pricing, Stripe + COD payments, invoices and an admin dashboard.",
+    q: "What is included in the Phase 1 MVP?",
+    a: "User registration/login with OTP, roles, profiles and addresses, shipment creation, shipment types, order lifecycle, tracking numbers and history, distance/weight pricing, Stripe + COD payments, invoices and admin dashboard.",
   },
   {
-    q: "How do I track a shipment?",
-    a: "Use the Tracking page with the auto-generated tracking number created when the order is placed. You will see the full status history.",
+    q: "How does tracking work?",
+    a: "Every order gets a unique tracking number. Anyone can look it up on the Tracking page and see status history events.",
   },
   {
-    q: "Which shipment types are supported?",
+    q: "Which shipment types are available?",
     a: "Same-day, express, standard and scheduled delivery.",
   },
   {
-    q: "How is pricing calculated?",
-    a: "Automatic calculation from base fee + distance rate + weight rate, with a minimum fee. Admins can edit pricing rules.",
+    q: "How is price calculated?",
+    a: "Base fee + distance fee + weight fee, with a minimum fee. Pricing rules are configurable by admins.",
   },
   {
-    q: "What payment methods are available?",
-    a: "Online card payment through Stripe and Cash on Delivery. Paid orders can generate invoices automatically.",
+    q: "Which payments are supported?",
+    a: "Stripe card payments and Cash on Delivery. Invoices can be generated automatically.",
   },
   {
-    q: "What is out of scope for Phase 1?",
-    a: "Real-time GPS tracking, fleet/route optimization, SMS/push notification providers, and native mobile apps are planned for later phases.",
+    q: "What is not included yet?",
+    a: "Live GPS fleet tracking, route optimization, native mobile apps and advanced SMS/push providers are outside Phase 1.",
   },
 ];
 
 export default function FaqPage() {
   return (
     <SiteShell>
-      <section className="section-pad pt-10 md:pt-16">
+      <section className="section-pad pt-8 md:pt-12">
         <div className="container-main max-w-3xl">
-          <p className="eyebrow">FAQ</p>
-          <h1 className="display mt-4 text-[clamp(2.6rem,8vw,5rem)]">
-            MVP questions,
-            <br />
-            clear answers
-          </h1>
-          <div className="mt-10 space-y-3">
+          <p className="kicker">FAQ</p>
+          <h1 className="heading mt-3 text-[clamp(2.2rem,5vw,3.4rem)]">Frequently asked questions</h1>
+          <div className="mt-8 space-y-3">
             {faqs.map((item) => (
-              <details key={item.q} className="group rounded-[1.3rem] border border-[var(--line)] bg-white p-5 open:soft-shadow">
-                <summary className="cursor-pointer list-none display text-xl marker:content-none">
-                  <div className="flex items-center justify-between gap-4">
-                    <span>{item.q}</span>
-                    <span className="text-2xl text-[var(--muted)] transition group-open:rotate-45">+</span>
-                  </div>
-                </summary>
-                <p className="mt-4 text-[var(--muted)]">{item.a}</p>
+              <details key={item.q} className="panel p-5">
+                <summary className="cursor-pointer list-none heading text-lg">{item.q}</summary>
+                <p className="mt-3 text-sm text-[var(--muted)]">{item.a}</p>
               </details>
             ))}
           </div>
