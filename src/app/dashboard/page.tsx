@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { SiteHeader } from "@/components/SiteHeader";
+import { SiteShell } from "@/components/SiteShell";
 import { API_BASE } from "@/lib/api";
 
 type Stats = {
@@ -45,26 +46,38 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen">
-      <SiteHeader />
-      <main className="container-main py-12">
-        <h1 className="display-font text-4xl text-slate-900">Admin Dashboard</h1>
-        <p className="mt-2 text-slate-600">Login as dispatcher/admin and click to load stats.</p>
-        <button onClick={loadStats} className="mt-4 rounded-md bg-[var(--brand)] px-4 py-2 text-white" disabled={loading}>
-          {loading ? "Loading..." : "Load Dashboard"}
-        </button>
-        {error && <p className="mt-3 text-red-600">{error}</p>}
-        {stats && (
-          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {Object.entries(stats.totals).map(([k, v]) => (
-              <article key={k} className="rounded-lg border border-slate-200 bg-white p-5">
-                <p className="text-sm capitalize text-slate-500">{k.replace(/([A-Z])/g, " $1")}</p>
-                <p className="mt-2 text-2xl font-semibold text-slate-900">{String(v)}</p>
-              </article>
-            ))}
+    <SiteShell>
+      <section className="section-pad pt-10 md:pt-16">
+        <div className="container-main">
+          <p className="eyebrow">Dashboard</p>
+          <h1 className="display mt-4 text-[clamp(2.4rem,7vw,4.6rem)]">Operations at a glance</h1>
+          <p className="mt-4 max-w-2xl text-[var(--muted)]">
+            Login as dispatcher or admin, then load live totals for orders, revenue, deliveries and drivers.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <button onClick={loadStats} className="btn btn-primary" disabled={loading}>
+              {loading ? "Loading..." : "Load dashboard"}
+            </button>
+            <Link href="/login" className="btn btn-ghost">
+              Go to login
+            </Link>
           </div>
-        )}
-      </main>
-    </div>
+
+          {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
+
+          {stats && (
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {Object.entries(stats.totals).map(([key, value]) => (
+                <article key={key} className="rounded-[1.4rem] border border-[var(--line)] bg-white p-6">
+                  <p className="eyebrow">{key.replace(/([A-Z])/g, " $1")}</p>
+                  <p className="display mt-3 text-4xl">{String(value)}</p>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </SiteShell>
   );
 }

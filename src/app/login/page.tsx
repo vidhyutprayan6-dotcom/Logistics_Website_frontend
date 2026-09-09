@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { SiteHeader } from "@/components/SiteHeader";
+import { SiteShell } from "@/components/SiteShell";
 import { apiFetch } from "@/lib/api";
 
 export default function LoginPage() {
@@ -32,33 +33,51 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen">
-      <SiteHeader />
-      <main className="container-main py-12">
-        <h1 className="display-font text-4xl text-slate-900">Login</h1>
-        <form onSubmit={onSubmit} className="mt-6 max-w-md space-y-3 rounded-lg border border-slate-200 bg-white p-5">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-md border border-slate-300 px-3 py-2"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-md border border-slate-300 px-3 py-2"
-            required
-          />
-          <button className="rounded-md bg-[var(--brand)] px-4 py-2 text-white" disabled={loading}>
-            {loading ? "Logging in..." : "Login"}
-          </button>
-          {error && <p className="text-sm text-red-600">{error}</p>}
-        </form>
-      </main>
-    </div>
+    <SiteShell>
+      <section className="section-pad pt-10 md:pt-16">
+        <div className="container-main grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="eyebrow">Login</p>
+            <h1 className="display mt-4 text-[clamp(2.6rem,7vw,4.8rem)]">
+              Welcome
+              <br />
+              back
+            </h1>
+            <p className="mt-4 max-w-md text-[var(--muted)]">
+              Access shipments, tracking and admin tools with your account.
+            </p>
+          </div>
+
+          <form onSubmit={onSubmit} className="rounded-[1.8rem] border border-[var(--line)] bg-white p-6 soft-shadow md:p-8">
+            <label className="block text-sm font-medium">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="field mt-2"
+              required
+            />
+            <label className="mt-4 block text-sm font-medium">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="field mt-2"
+              required
+            />
+            <button className="btn btn-primary mt-6 w-full" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </button>
+            {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
+            <p className="mt-5 text-sm text-[var(--muted)]">
+              New here?{" "}
+              <Link href="/register" className="font-semibold text-[var(--ink)] underline underline-offset-4">
+                Create an account
+              </Link>
+            </p>
+          </form>
+        </div>
+      </section>
+    </SiteShell>
   );
 }
