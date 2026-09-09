@@ -49,10 +49,14 @@ export default function DashboardPage() {
     <SiteShell>
       <section className="section-pad pt-10 md:pt-16">
         <div className="container-main">
-          <p className="eyebrow">Dashboard</p>
-          <h1 className="display mt-4 text-[clamp(2.4rem,7vw,4.6rem)]">Operations at a glance</h1>
+          <p className="eyebrow">Admin dashboard</p>
+          <h1 className="display mt-4 text-[clamp(2.4rem,7vw,4.6rem)]">
+            Revenue, orders
+            <br />
+            and deliveries
+          </h1>
           <p className="mt-4 max-w-2xl text-[var(--muted)]">
-            Login as dispatcher or admin, then load live totals for orders, revenue, deliveries and drivers.
+            Admin and dispatcher overview for orders, revenue, deliveries, active shipments, drivers and users.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">

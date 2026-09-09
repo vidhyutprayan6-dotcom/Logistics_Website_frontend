@@ -18,17 +18,16 @@ export default function ContactPage() {
           <div>
             <p className="eyebrow">Contact</p>
             <h1 className="display mt-4 text-[clamp(2.6rem,7vw,4.8rem)]">
-              We think
+              Talk about
               <br />
-              with you
+              your logistics rollout
             </h1>
             <p className="mt-5 max-w-md text-lg text-[var(--muted)]">
-              Leave your details and we’ll help you choose the right logistics setup for your team.
+              Ask about shipment workflows, role setup, pricing rules, Stripe/COD payments or admin dashboard needs.
             </p>
             <div className="mt-8 space-y-2 text-sm">
               <p>support@vettore.app</p>
               <p>+39 000 000 0000</p>
-              <p>Milan · Rome · Naples</p>
             </div>
           </div>
 
@@ -37,12 +36,19 @@ export default function ContactPage() {
               <input className="field" name="name" placeholder="Name *" required />
               <input className="field" type="email" name="email" placeholder="Email *" required />
             </div>
-            <input className="field mt-4" name="subject" placeholder="Subject" />
+            <select className="field mt-4" name="topic" defaultValue="Shipments">
+              <option>Shipments</option>
+              <option>Tracking</option>
+              <option>Pricing</option>
+              <option>Payments</option>
+              <option>Admin dashboard</option>
+              <option>User roles</option>
+            </select>
             <textarea className="field textarea mt-4" name="message" placeholder="Message *" required />
             <button type="submit" className="btn btn-primary mt-5 w-full md:w-auto">
               Send message
             </button>
-            {sent && <p className="mt-4 text-sm text-emerald-700">Thanks — we’ll get back to you soon.</p>}
+            {sent && <p className="mt-4 text-sm text-emerald-700">Thanks — we received your message.</p>}
           </form>
         </div>
       </section>

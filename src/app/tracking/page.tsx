@@ -39,12 +39,12 @@ export default function TrackingPage() {
         <div className="container-main max-w-3xl">
           <p className="eyebrow">Tracking</p>
           <h1 className="display mt-4 text-[clamp(2.6rem,8vw,5rem)]">
-            Follow every
+            Track by
             <br />
-            movement
+            tracking number
           </h1>
           <p className="mt-4 text-lg text-[var(--muted)]">
-            Enter your tracking number and get a clean timeline of where the shipment stands.
+            Look up any shipment with its unique tracking ID and review the full order status history.
           </p>
 
           <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-3 sm:flex-row">

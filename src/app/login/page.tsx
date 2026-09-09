@@ -39,12 +39,12 @@ export default function LoginPage() {
           <div>
             <p className="eyebrow">Login</p>
             <h1 className="display mt-4 text-[clamp(2.6rem,7vw,4.8rem)]">
-              Welcome
+              Sign in to
               <br />
-              back
+              your account
             </h1>
             <p className="mt-4 max-w-md text-[var(--muted)]">
-              Access shipments, tracking and admin tools with your account.
+              Customers, dispatchers, drivers and admins use role-based access after email/phone login.
             </p>
           </div>
 

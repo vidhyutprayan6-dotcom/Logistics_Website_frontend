@@ -2,20 +2,28 @@ import { SiteShell } from "@/components/SiteShell";
 
 const faqs = [
   {
+    q: "Which features are included in Phase 1 MVP?",
+    a: "User accounts with OTP, roles, profile and addresses, shipment creation, order lifecycle, tracking numbers, distance/weight pricing, Stripe + COD payments, invoices and an admin dashboard.",
+  },
+  {
     q: "How do I track a shipment?",
-    a: "Open Tracking, enter your VT tracking number, and review the full status history.",
+    a: "Use the Tracking page with the auto-generated tracking number created when the order is placed. You will see the full status history.",
   },
   {
-    q: "Which payment methods are supported?",
-    a: "Card payments via Stripe and Cash on Delivery for eligible orders in the MVP.",
+    q: "Which shipment types are supported?",
+    a: "Same-day, express, standard and scheduled delivery.",
   },
   {
-    q: "Can dispatchers and drivers use the same platform?",
-    a: "Yes. Role-based access supports customer, dispatcher, driver, admin and super admin.",
+    q: "How is pricing calculated?",
+    a: "Automatic calculation from base fee + distance rate + weight rate, with a minimum fee. Admins can edit pricing rules.",
   },
   {
-    q: "How is shipping cost calculated?",
-    a: "Base fee + distance rate + weight rate, with a minimum fee per shipment type.",
+    q: "What payment methods are available?",
+    a: "Online card payment through Stripe and Cash on Delivery. Paid orders can generate invoices automatically.",
+  },
+  {
+    q: "What is out of scope for Phase 1?",
+    a: "Real-time GPS tracking, fleet/route optimization, SMS/push notification providers, and native mobile apps are planned for later phases.",
   },
 ];
 
@@ -25,7 +33,11 @@ export default function FaqPage() {
       <section className="section-pad pt-10 md:pt-16">
         <div className="container-main max-w-3xl">
           <p className="eyebrow">FAQ</p>
-          <h1 className="display mt-4 text-[clamp(2.6rem,8vw,5rem)]">Answers, without the fog</h1>
+          <h1 className="display mt-4 text-[clamp(2.6rem,8vw,5rem)]">
+            MVP questions,
+            <br />
+            clear answers
+          </h1>
           <div className="mt-10 space-y-3">
             {faqs.map((item) => (
               <details key={item.q} className="group rounded-[1.3rem] border border-[var(--line)] bg-white p-5 open:soft-shadow">

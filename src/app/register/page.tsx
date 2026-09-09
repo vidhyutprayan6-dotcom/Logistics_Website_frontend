@@ -37,14 +37,14 @@ export default function RegisterPage() {
       <section className="section-pad pt-10 md:pt-16">
         <div className="container-main grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
           <div>
-            <p className="eyebrow">Get started</p>
+            <p className="eyebrow">Registration</p>
             <h1 className="display mt-4 text-[clamp(2.6rem,7vw,4.8rem)]">
-              Create your
+              Register with
               <br />
-              Vettore account
+              email and phone
             </h1>
             <p className="mt-4 max-w-md text-[var(--muted)]">
-              Start shipping in minutes. Verify with OTP, then manage orders from your dashboard.
+              Create a customer account, verify with OTP, then manage profile details, addresses and shipments.
             </p>
           </div>
 
